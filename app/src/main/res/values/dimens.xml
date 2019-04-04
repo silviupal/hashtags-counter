@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing -->
+    <dimen name="spacing_default">8dp</dimen>
+    <dimen name="spacing_double">16dp</dimen>
+
+    <!-- Text sizes -->
+    <dimen name="counterTextSize">20sp</dimen>
+    <dimen name="counterChars">10sp</dimen>
+    <dimen name="toolbarElevation">4dp</dimen>
+
+</resources>

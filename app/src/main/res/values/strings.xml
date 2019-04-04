@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">hashtagscounter</string>
+    <string name="app_name">Hashtags Counter</string>
+    <string name="input_hint">Insert text here</string>
+    <string name="default_counter_hashtags_text">0 hashtags</string>
+    <string name="default_counter_input_text">0 characters</string>
+    <string name="hashtags_counter_format">%d %s</string>
 </resources>

@@ -6,3 +6,5 @@
 /build
 /captures
 .externalNativeBuild
+keystore.jks
+private_key.pepk

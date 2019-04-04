@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="hashtags">
+        <item quantity="one">hashtag</item>
+        <item quantity="other">hashtags</item>
+    </plurals>
+
+    <plurals name="textLength">
+        <item quantity="one">character</item>
+        <item quantity="other">characters</item>
+    </plurals>
+</resources>
