@@ -20,7 +20,6 @@ class MainActivity : BaseActivity() {
 
     private fun setHashtagsCounterFragment() {
         val fragment = HashtagsCounterFragment()
-        fragment.listener = this
         fragment.setState(Enums.HashtagsCounterFragmentStates.NO_BACK_BUTTON)
         switchFragment(fragment)
     }
