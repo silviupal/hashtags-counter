@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardWrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_default"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_default"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="top"
+                    android:hint="@string/input_hint"
+                    android:minLines="10"
+                    android:paddingStart="@dimen/spacing_default"
+                    android:paddingTop="@dimen/spacing_default"
+                    android:paddingEnd="@dimen/spacing_default"
+                    android:paddingBottom="@dimen/spacing_double" />
+
+                <TextView
+                    android:id="@+id/inputLengthView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="@dimen/spacing_default"
+                    android:layout_marginTop="@dimen/spacing_default"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/default_counter_input_text"
+                    android:textSize="@dimen/counterChars" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/hashtagsCounterView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_double"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="@string/default_counter_hashtags_text"
+                android:textSize="@dimen/counterTextSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardWrapper" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>
