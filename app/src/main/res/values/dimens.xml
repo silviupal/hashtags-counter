@@ -7,6 +7,7 @@
     <!-- Text sizes -->
     <dimen name="counterTextSize">20sp</dimen>
     <dimen name="counterChars">10sp</dimen>
+
     <dimen name="toolbarElevation">4dp</dimen>
 
 </resources>

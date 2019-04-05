@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">Hashtags Counter</string>
+    <string name="app_name">Hashtags Manager</string>
     <string name="input_hint">Insert text here</string>
     <string name="default_counter_hashtags_text">0 hashtags</string>
     <string name="default_counter_input_text">0 characters</string>
     <string name="hashtags_counter_format">%d %s</string>
+    <string name="toolbar_title_hashtags_counter_fragment">Hashtags Counter</string>
 </resources>
