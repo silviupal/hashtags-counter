@@ -5,4 +5,8 @@
     <string name="default_counter_input_text">0 characters</string>
     <string name="hashtags_counter_format">%d %s</string>
     <string name="toolbar_title_hashtags_counter_fragment">Hashtags Counter</string>
+
+    <string name="toolbar_title_hashtags_list">Your lists</string>
+    <string name="toolbar_title_about">About</string>
+    <string name="toolbar_title_rate_the_app">Rate this app</string>
 </resources>

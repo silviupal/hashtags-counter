@@ -1,12 +1,13 @@
 package silviupal.hashtagscounter.utils
 
+import android.content.Context
+import silviupal.hashtagscounter.R
 import java.util.regex.Pattern
 
 /**
  * Created by Silviu Pal on 31/03/2019.
  */
 object StringUtils {
-    //private const val hashtagsRegex = "#[0-9a-zA-Z_]+"
     private const val hashtagsRegex = "#[\\p{L}_]+"
 
     fun countHashtags(textToCheck: CharSequence): Int {
@@ -25,5 +26,31 @@ object StringUtils {
         }
 
         return hashtagsCounter
+    }
+
+    fun getHashtagsCounterText(hashtagsCount: Int, context: Context?): String {
+        context?.let {
+            return if (hashtagsCount == 0) {
+                it.getString(R.string.default_counter_hashtags_text)
+            } else {
+                String.format(it.getString(R.string.hashtags_counter_format),
+                    hashtagsCount,
+                    it.resources.getQuantityText(R.plurals.hashtags, hashtagsCount))
+            }
+        }
+        return ""
+    }
+
+    fun getCharsCountText(charsCount: Int, context: Context?): String {
+        context?.let {
+            return if (charsCount == 0) {
+                it.getString(R.string.default_counter_input_text)
+            } else {
+                String.format(it.getString(R.string.hashtags_counter_format),
+                    charsCount,
+                    it.resources.getQuantityString(R.plurals.textLength, charsCount))
+            }
+        }
+        return ""
     }
 }

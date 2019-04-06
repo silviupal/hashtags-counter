@@ -12,6 +12,7 @@ import silviupal.hashtagscounter.Enums
 import silviupal.hashtagscounter.R
 import silviupal.hashtagscounter.base.BaseFragment
 import silviupal.hashtagscounter.helpers.SimplifiedTextWatcher
+import silviupal.hashtagscounter.utils.ColorUtils
 import silviupal.hashtagscounter.utils.StringUtils
 import timber.log.Timber
 
@@ -26,11 +27,10 @@ class HashtagsCounterFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupToolbar()
         setupInputView()
     }
 
-    private fun setupToolbar() {
+    override fun setupToolbar() {
         state?.let {
             when (it) {
                 Enums.HashtagsCounterFragmentStates.NO_BACK_BUTTON -> {
@@ -63,34 +63,13 @@ class HashtagsCounterFragment : BaseFragment() {
     }
 
     private fun setupCounterView(hashtagsCount: Int) {
-        val hashtagsText: String
-        val textColor: Int
-        if (hashtagsCount == 0) {
-            hashtagsText = getString(R.string.default_counter_hashtags_text)
-            textColor = R.color.textColorPrimary
-        } else {
-            hashtagsText = String.format(getString(R.string.hashtags_counter_format),
-                hashtagsCount,
-                resources.getQuantityText(R.plurals.hashtags, hashtagsCount))
-            textColor = if (hashtagsCount > 30) {
-                R.color.error
-            } else {
-                R.color.textColorPrimary
-            }
-        }
-        hashtagsCounterView.setTextColor(ContextCompat.getColor(App.instance.applicationContext, textColor))
-        hashtagsCounterView.text = hashtagsText
+        hashtagsCounterView.text = StringUtils.getHashtagsCounterText(hashtagsCount, context)
+        hashtagsCounterView.setTextColor(ContextCompat.getColor(App.instance.applicationContext,
+            ColorUtils.getTextColor(hashtagsCount)))
     }
 
     private fun setupCounterCharsView() {
-        val textSize = inputView.text?.length ?: 0
-        inputLengthView.text = if (textSize == 0) {
-            getString(R.string.default_counter_input_text)
-        } else {
-            String.format(getString(R.string.hashtags_counter_format),
-                textSize,
-                resources.getQuantityString(R.plurals.textLength, textSize))
-        }
+        inputLengthView.text = StringUtils.getCharsCountText(inputView.text?.length ?: 0, context)
     }
 
     fun setState(state: Enums.HashtagsCounterFragmentStates) {

@@ -31,6 +31,7 @@
                     android:fontFamily="sans-serif-light"
                     android:gravity="top"
                     android:hint="@string/input_hint"
+                    android:maxLength="5000"
                     android:minLines="10"
                     android:paddingStart="@dimen/spacing_default"
                     android:paddingTop="@dimen/spacing_default"
