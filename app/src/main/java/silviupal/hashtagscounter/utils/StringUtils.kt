@@ -10,24 +10,20 @@ import java.util.regex.Pattern
 object StringUtils {
     private const val hashtagsRegex = "#[\\p{L}_]+"
 
-    fun countHashtags(textToCheck: CharSequence): Int {
+    fun countHashtagsFromText(textToCheck: String): Int = getHashtagsList(textToCheck).size
+
+    fun getHashtagsList(textToCheck: String): List<String> {
         if (textToCheck.isEmpty()) {
-            return 0
+            return emptyList()
         }
-
         val matcher = Pattern.compile(hashtagsRegex).matcher(textToCheck)
-
         val hashtagsList = arrayListOf<String>()
-        var hashtagsCounter = 0
-
         while (matcher.find()) {
             hashtagsList += matcher.group()
-            hashtagsCounter++
         }
-
-        return hashtagsCounter
+        return hashtagsList
     }
-
+    
     fun getHashtagsCounterText(hashtagsCount: Int, context: Context?): String {
         context?.let {
             return if (hashtagsCount == 0) {

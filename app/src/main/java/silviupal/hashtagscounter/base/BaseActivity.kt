@@ -4,13 +4,12 @@ import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import silviupal.hashtagscounter.R
-import silviupal.hashtagscounter.interfaces.IActivityFragmentListener
 import timber.log.Timber
 
 /**
  * Created by Silviu Pal on 05/04/2019.
  */
-abstract class BaseActivity : AppCompatActivity(), IActivityFragmentListener {
+abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Timber.i("onCreate")
@@ -28,7 +27,7 @@ abstract class BaseActivity : AppCompatActivity(), IActivityFragmentListener {
 
     fun switchFragmentWithHistory(fragment: BaseFragment) {
         supportFragmentManager?.beginTransaction()
-            ?.replace(R.id.container, fragment, fragment.javaClass.name)
+            ?.replace(R.id.container, fragment)
             ?.addToBackStack(fragment.javaClass.name)
             ?.commit()
     }

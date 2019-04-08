@@ -6,7 +6,15 @@
     <string name="hashtags_counter_format">%d %s</string>
     <string name="toolbar_title_hashtags_counter_fragment">Hashtags Counter</string>
 
-    <string name="toolbar_title_hashtags_list">Your lists</string>
+    <string name="toolbar_title_your_posts">Your posts</string>
     <string name="toolbar_title_about">About</string>
     <string name="toolbar_title_rate_the_app">Rate this app</string>
+    <string name="toolbar_title_hashtags_create_new_item">New Item</string>
+    <string name="copy_text">Copy</string>
+    <string name="paste_text">Paste</string>
+    <string name="clear_text">Clear</string>
+    <string name="toast_copy_text">Text copied to clipboard!</string>
+    <string name="toast_nothing_to_paste">Nothing to paste.</string>
+    <string name="toast_input_view_limit_achieved">Input text is limited to 5000</string>
+    <string name="toolbar_title_your_hashtags">Your hashtags</string>
 </resources>

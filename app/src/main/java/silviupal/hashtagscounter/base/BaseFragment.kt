@@ -1,19 +1,18 @@
 package silviupal.hashtagscounter.base
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import silviupal.hashtagscounter.interfaces.IActivityFragmentListener
+import silviupal.hashtagscounter.interfaces.IBaseActivityFragmentListener
 
 /**
  * Created by Silviu Pal on 05/04/2019.
  */
 abstract class BaseFragment : Fragment() {
-    var listener: IActivityFragmentListener? = null
+    var listener: IBaseActivityFragmentListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(getLayoutId(), container, false)
@@ -21,15 +20,6 @@ abstract class BaseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        context?.let {
-            if (context is BaseActivity) {
-                this.listener = it as BaseActivity
-            }
-        }
     }
 
     override fun onDetach() {
