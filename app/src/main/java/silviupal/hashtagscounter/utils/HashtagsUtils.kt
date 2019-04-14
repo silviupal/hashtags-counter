@@ -7,10 +7,10 @@ import java.util.regex.Pattern
 /**
  * Created by Silviu Pal on 31/03/2019.
  */
-object StringUtils {
-    private const val hashtagsRegex = "#[\\p{L}_]+"
+object HashtagsUtils {
+    private const val hashtagsRegex = "#[\\p{L}_0-9]+"
 
-    fun countHashtagsFromText(textToCheck: String): Int = getHashtagsList(textToCheck).size
+    fun getNumberOfHashtagsFromText(textToCheck: String): Int = getHashtagsList(textToCheck).size
 
     fun getHashtagsList(textToCheck: String): List<String> {
         if (textToCheck.isEmpty()) {
@@ -23,7 +23,7 @@ object StringUtils {
         }
         return hashtagsList
     }
-    
+
     fun getHashtagsCounterText(hashtagsCount: Int, context: Context?): String {
         context?.let {
             return if (hashtagsCount == 0) {
@@ -49,4 +49,6 @@ object StringUtils {
         }
         return ""
     }
+
+    fun isNotAHashtag(hashtagName: String): Boolean = !hashtagName.matches(Regex(hashtagsRegex))
 }

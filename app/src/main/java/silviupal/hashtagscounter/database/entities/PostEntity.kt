@@ -8,9 +8,9 @@ import java.util.Date
  * Created by Silviu Pal on 4/8/2019.
  */
 @Entity
-data class ListItemEntity(
-    @PrimaryKey
-    var id: Int = 0,
+data class PostEntity(
+    @PrimaryKey(autoGenerate = true)
+    var id: Int,
     var title: String = "",
     var text: String = "",
     var hashtagsCount: Int = 0,

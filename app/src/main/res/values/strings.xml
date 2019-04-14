@@ -1,20 +1,68 @@
 <resources>
     <string name="app_name">Hashtags Manager</string>
+
+    <!-- Toolbar titles -->
+    <string name="toolbar_title_about">About</string>
+    <string name="toolbar_title_hashtags_counter_fragment">Hashtags Counter</string>
+    <string name="toolbar_title_your_posts">Your posts</string>
+    <string name="toolbar_title_rate_the_app">Rate this app</string>
+    <string name="toolbar_title_hashtags_create_new_item">New post</string>
+    <string name="toolbar_title_hashtags_update_item">Edit post</string>
+    <string name="toolbar_title_your_hashtags">Your hashtags</string>
+
+    <!-- Hints -->
+    <string name="hint_title_input">Post title</string>
     <string name="input_hint">Insert text here</string>
+    <string name="hint_hashtag_input">Insert your hashtag starting with \'#\'</string>
+
+    <!-- Formats -->
+    <string name="hashtag_sign_format">#%d</string>
+    <string name="hashtags_counter_format">%d %s</string>
+
+    <!-- Buttons labels-->
+    <string name="btn_create_post">Create new post</string>
+    <string name="btn_update_post">Update post</string>
+    <string name="btn_copy">Copy</string>
+    <string name="btn_paste">Paste</string>
+    <string name="btn_clear">Clear</string>
+    <string name="btn_insert_hashtag">Insert #</string>
+
+    <!-- Dialog texts -->
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="update">Update</string>
+    <string name="create">Create</string>
+    <string name="insert">Insert</string>
+    <string name="dialog_warning_title">Think twice</string>
+    <string name="dialog_edit_post_message">Are you sure you want to update this post? Your previous post will be overwritten.</string>
+    <string name="dialog_delete_post_message">Are you sure you want to delete this post?</string>
+    <string name="dialog_create_hashtag_title">Create new Hashtag</string>
+    <string name="dialog_delete_hashtag_message">Are you sure you want to delete this hashtag?</string>
+    <string name="dialog_edit_hashtag_title">Edit hashtag</string>
+    <string name="dialog_select_hashtags_title">Select hashtags</string>
+
+    <!-- Toast messages -->
+    <string name="toast_copy_text">Text copied to clipboard</string>
+    <string name="toast_nothing_to_paste">Nothing to paste</string>
+    <string name="toast_input_view_limit_achieved">Input text is limited to 1500</string>
+    <string name="toast_update_post_successfully">Post successfully updated!</string>
+    <string name="toast_create_post_successfully">Post successfully created!</string>
+    <string name="toast_create_hashtag_successfully">Hashtag successfully created!</string>
+    <string name="toast_nothing_changed">Nothing changed. No need to update.</string>
+    <string name="toast_update_hashtag_successfully">Hashtag successfully updated!</string>
+
+    <!-- Errors -->
+    <string name="error_empty_error">* This field should not be empty</string>
+    <string name="error_hashtag_invalid">* Invalid. A hashtag should start with a letter, a digit or _</string>
+
+    <!-- Empty fields -->
+    <string name="empty_screen_no_posts_title">No saved posts</string>
+    <string name="empty_screen_no_posts_message">Here you can save posts for future usages.\nCreate new post by clicking the round green button.</string>
+    <string name="empty_screen_no_hashtags_title">No saved hashtags</string>
+    <string name="empty_screen_no_hashtags_message">Here you can save your favorite hashtags for future usages. Create new hashtag by clicking the round green button.</string>
+
+    <string name="hashtag_sign">#</string>
+    <string name="checkbox_dont_show_this_again">Don\'t show this again</string>
     <string name="default_counter_hashtags_text">0 hashtags</string>
     <string name="default_counter_input_text">0 characters</string>
-    <string name="hashtags_counter_format">%d %s</string>
-    <string name="toolbar_title_hashtags_counter_fragment">Hashtags Counter</string>
-
-    <string name="toolbar_title_your_posts">Your posts</string>
-    <string name="toolbar_title_about">About</string>
-    <string name="toolbar_title_rate_the_app">Rate this app</string>
-    <string name="toolbar_title_hashtags_create_new_item">New Item</string>
-    <string name="copy_text">Copy</string>
-    <string name="paste_text">Paste</string>
-    <string name="clear_text">Clear</string>
-    <string name="toast_copy_text">Text copied to clipboard!</string>
-    <string name="toast_nothing_to_paste">Nothing to paste.</string>
-    <string name="toast_input_view_limit_achieved">Input text is limited to 5000</string>
-    <string name="toolbar_title_your_hashtags">Your hashtags</string>
 </resources>

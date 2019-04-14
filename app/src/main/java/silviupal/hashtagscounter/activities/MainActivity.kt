@@ -13,38 +13,31 @@ import silviupal.hashtagscounter.MyEnums
 import silviupal.hashtagscounter.R
 import silviupal.hashtagscounter.base.BaseActivity
 import silviupal.hashtagscounter.fragments.HashtagsCounterFragment
+import silviupal.hashtagscounter.fragments.YourHashtagsFragment
 import silviupal.hashtagscounter.fragments.YourPostsFragment
 import silviupal.hashtagscounter.interfaces.IMainActivityFragmentListener
+import silviupal.hashtagscounter.utils.KeyboardUtils
 
 class MainActivity : BaseActivity(), IMainActivityFragmentListener {
+    private var selectedDrawerItem: Long = 0L
     override fun getLayoutId(): Int = R.layout.activity_main
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(toolbar)
-        setYourPostsFragment()
+
+        selectedDrawerItem = 1L
+        switchFragment(YourPostsFragment())
         setDrawer()
-    }
-
-    private fun setYourPostsFragment() {
-        val fragment = YourPostsFragment()
-        switchFragment(fragment)
-    }
-
-    private fun setHashtagsCounterFragment() {
-        val fragment = HashtagsCounterFragment()
-        switchFragment(fragment)
     }
 
     private fun setDrawer() {
         val yourPostsItem = PrimaryDrawerItem().withIdentifier(1)
             .withName(R.string.toolbar_title_your_posts)
         val yourHashtagsItem = PrimaryDrawerItem().withIdentifier(2)
-            .withSelectable(false)
             .withName(R.string.toolbar_title_your_hashtags)
         val hashtagsCounterItem = PrimaryDrawerItem().withIdentifier(3)
             .withName(R.string.toolbar_title_hashtags_counter_fragment)
-
         val aboutItem = PrimaryDrawerItem().withIdentifier(4)
             .withSelectable(false)
             .withName(R.string.toolbar_title_about)
@@ -60,17 +53,28 @@ class MainActivity : BaseActivity(), IMainActivityFragmentListener {
         result.addStickyFooterItem(DividerDrawerItem())
         result.addStickyFooterItem(rateAppItem)
 
-        result.onDrawerItemClickListener = Drawer.OnDrawerItemClickListener { _, _, drawerItem ->
+        result.onDrawerItemClickListener = Drawer.OnDrawerItemClickListener { view, _, drawerItem ->
+
             result.closeDrawer()
+            KeyboardUtils.hideKeyboard(view, this)
             when (drawerItem.identifier) {
                 1L -> {
-                    setYourPostsFragment()
+                    if (selectedDrawerItem != 1L) {
+                        selectedDrawerItem = 1L
+                        switchFragment(YourPostsFragment())
+                    }
                 }
                 2L -> {
-                    Toast.makeText(this, "Open your hashtags", Toast.LENGTH_SHORT).show()
+                    if (selectedDrawerItem != 2L) {
+                        selectedDrawerItem = 2L
+                        switchFragment(YourHashtagsFragment())
+                    }
                 }
                 3L -> {
-                    setHashtagsCounterFragment()
+                    if (selectedDrawerItem != 3L) {
+                        selectedDrawerItem = 3L
+                        switchFragment(HashtagsCounterFragment())
+                    }
                 }
                 4L -> {
                     Toast.makeText(this, "About", Toast.LENGTH_SHORT).show()
@@ -89,9 +93,12 @@ class MainActivity : BaseActivity(), IMainActivityFragmentListener {
         }
     }
 
-    override fun openCreateEditItemActivity(state: MyEnums.CreateOrEditState) {
+    override fun openCreateEditItemActivity(state: MyEnums.CreateOrEditState, itemId: Int?) {
         val intent = Intent(this, CreateOrEditItemActivity::class.java)
         intent.putExtra(MyConstants.EXTRA_STATE, state)
+        itemId?.let {
+            intent.putExtra(MyConstants.EXTRA_ITEM_ID, it)
+        }
         startActivity(intent)
     }
 }

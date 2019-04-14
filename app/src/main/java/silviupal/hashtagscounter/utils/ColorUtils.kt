@@ -13,7 +13,7 @@ object ColorUtils {
             R.color.textColorPrimary
         } else {
             if (hashtagsCount > 30) {
-                R.color.error
+                R.color.colorError
             } else {
                 R.color.textColorPrimary
             }

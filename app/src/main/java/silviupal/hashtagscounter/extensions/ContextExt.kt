@@ -5,7 +5,6 @@ import android.content.ClipDescription
 import android.content.ClipboardManager
 import android.content.Context
 import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_hashtags_counter.*
 import silviupal.hashtagscounter.MyConstants
 
 /**

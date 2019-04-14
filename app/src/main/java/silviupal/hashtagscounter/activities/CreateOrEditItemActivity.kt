@@ -1,6 +1,7 @@
 package silviupal.hashtagscounter.activities
 
 import android.os.Bundle
+import android.view.MenuItem
 import kotlinx.android.synthetic.main.toolbar_layout.*
 import silviupal.hashtagscounter.MyConstants
 import silviupal.hashtagscounter.MyEnums
@@ -25,30 +26,30 @@ class CreateOrEditItemActivity : BaseActivity(), ICreateOrEditActivityFragmentLi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(toolbar)
-        intent?.extras?.let {
-            val state: MyEnums.CreateOrEditState? = it.getSerializable(MyConstants.EXTRA_STATE) as MyEnums.CreateOrEditState
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        intent?.extras?.let { intentObject ->
+            val state: MyEnums.CreateOrEditState? = intentObject.getSerializable(MyConstants.EXTRA_STATE) as MyEnums.CreateOrEditState
             state?.let {
                 when (it) {
                     MyEnums.CreateOrEditState.CREATE_ITEM -> {
-                        setCreateItemFragment()
+                        switchFragment(CreateNewItemFragment())
                     }
                     MyEnums.CreateOrEditState.EDIT_ITEM -> {
-                        setEditItemFragment()
+                        switchFragment(EditItemFragment.newInstance(intentObject.getInt(MyConstants.EXTRA_ITEM_ID)))
                     }
                 }
             }
         }
-        // take extra enum from intent
-        // show new item or edit item fragment
     }
 
-    private fun setCreateItemFragment() {
-        val fragment = CreateNewItemFragment()
-        switchFragment(fragment)
-    }
-
-    private fun setEditItemFragment() {
-        val fragment = EditItemFragment()
-        switchFragment(fragment)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                this.finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
