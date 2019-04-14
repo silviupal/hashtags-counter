@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/spacing_double"
+    android:layout_marginEnd="@dimen/spacing_double"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvDialogTitleView"
+        style="@style/Base.DialogWindowTitle.AppCompat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_double"
+        android:layout_marginBottom="@dimen/spacing_double"
+        android:textSize="@dimen/titleScreenSize"
+        tools:text="@string/dialog_select_hashtags_title" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHashtags"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <TextView
+        android:id="@+id/tvHashtagsCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/spacing_default"
+        android:textSize="@dimen/counterTextSize"
+        tools:text="#30" />
+
+</LinearLayout>

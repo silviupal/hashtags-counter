@@ -7,7 +7,7 @@ import timber.log.Timber
 /**
  * Created by Silviu Pal on 03/04/2019.
  */
-class App : Application() {
+class MyApp : Application() {
     init {
         instance = this
     }
@@ -20,6 +20,6 @@ class App : Application() {
     }
 
     companion object {
-        lateinit var instance: App
+        lateinit var instance: MyApp
     }
 }
