@@ -1,8 +1,5 @@
 package silviupal.hashtagscounter.utils
 
-import android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT
-import android.content.Context.INPUT_METHOD_SERVICE
-import androidx.core.content.ContextCompat.getSystemService
 import android.app.Activity
 import android.content.Context
 import android.view.View

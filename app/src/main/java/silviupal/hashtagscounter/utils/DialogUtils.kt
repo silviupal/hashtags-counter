@@ -23,7 +23,7 @@ object DialogUtils {
     fun buildNormalAlertDialog(context: Context,
         title: String,
         message: String,
-        positiveClick: DialogInterface.OnClickListener): AlertDialog.Builder {
+        positiveClick: DialogInterface.OnClickListener?): AlertDialog.Builder {
         return AlertDialog.Builder(context)
             .setTitle(title)
             .setMessage(message)
@@ -37,5 +37,13 @@ object DialogUtils {
             .setCancelable(true)
             .setPositiveButton(context.getString(R.string.yes), null)
             .setNegativeButton(context.getString(R.string.cancel), null)
+    }
+
+    fun buildInfoDialog(context: Context, title: String, message: String): AlertDialog.Builder {
+        return AlertDialog.Builder(context)
+            .setTitle(title)
+            .setMessage(message)
+            .setCancelable(true)
+            .setPositiveButton(context.getString(R.string.ok), null)
     }
 }

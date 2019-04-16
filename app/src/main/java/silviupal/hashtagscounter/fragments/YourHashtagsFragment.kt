@@ -1,5 +1,6 @@
 package silviupal.hashtagscounter.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
@@ -111,6 +112,7 @@ class YourHashtagsFragment : BaseFragment() {
         }
     }
 
+    @SuppressLint("InflateParams")
     private fun showCreateHashtagDialog(context: Context) {
         val customView = LayoutInflater.from(context).inflate(R.layout.hashtag_dialog_layout, null, false)
         customView.tvDialogTitleView.text = getString(R.string.dialog_create_hashtag_title)
@@ -118,7 +120,7 @@ class YourHashtagsFragment : BaseFragment() {
         customView.inputEditText.addTextChangedListener(object : SimplifiedTextWatcher() {
             override fun afterTextChanged(s: Editable?) {
                 super.afterTextChanged(s)
-                customView.tvError.visibility = View.GONE
+                customView.tvInputError.visibility = View.GONE
             }
         })
 
@@ -132,15 +134,22 @@ class YourHashtagsFragment : BaseFragment() {
             yesButton.setOnClickListener {
                 val hashtagName = customView.inputEditText.text.toString()
                 if (hashtagName.isEmpty()) {
-                    customView.tvError.text = getString(R.string.error_empty_error)
-                    customView.tvError.visibility = View.VISIBLE
+                    customView.tvInputError.text = getString(R.string.error_empty_error)
+                    customView.tvInputError.visibility = View.VISIBLE
                 } else {
-                    if (HashtagsUtils.isNotAHashtag(hashtagName)) {
-                        customView.tvError.text = getString(R.string.error_hashtag_invalid)
-                        customView.tvError.visibility = View.VISIBLE
-                    } else {
-                        runCreateHashtag(hashtagName)
-                        dialogObject.dismiss()
+                    when {
+                        HashtagsUtils.isNotAHashtag(hashtagName) -> {
+                            customView.tvInputError.text = getString(R.string.error_hashtag_invalid)
+                            customView.tvInputError.visibility = View.VISIBLE
+                        }
+                        isHashtagAlreadyAdded(hashtagName) -> {
+                            customView.tvInputError.text = getString(R.string.error_hashtag_already_created)
+                            customView.tvInputError.visibility = View.VISIBLE
+                        }
+                        else -> {
+                            runCreateHashtag(hashtagName)
+                            dialogObject.dismiss()
+                        }
                     }
                 }
             }
@@ -148,6 +157,16 @@ class YourHashtagsFragment : BaseFragment() {
         dialog.show()
     }
 
+    private fun isHashtagAlreadyAdded(hashtagName: String): Boolean {
+        fastAdapter.adapterItems.forEach {
+            if (hashtagName == it.itemEntity.name) {
+                return true
+            }
+        }
+        return false
+    }
+
+    @SuppressLint("InflateParams")
     private fun showEditDialog(context: Context, hashtagEntity: HashtagEntity) {
         val inputView = LayoutInflater.from(context).inflate(R.layout.hashtag_dialog_layout, null, false)
         inputView.tvDialogTitleView.text = getString(R.string.dialog_edit_hashtag_title)
@@ -157,7 +176,7 @@ class YourHashtagsFragment : BaseFragment() {
         inputView.inputEditText.addTextChangedListener(object : SimplifiedTextWatcher() {
             override fun afterTextChanged(s: Editable?) {
                 super.afterTextChanged(s)
-                inputView.tvError.visibility = View.GONE
+                inputView.tvInputError.visibility = View.GONE
             }
         })
 
@@ -171,14 +190,14 @@ class YourHashtagsFragment : BaseFragment() {
             yesButton.setOnClickListener {
                 val hashtagName = inputView.inputEditText.text.toString()
                 if (hashtagName.isEmpty()) {
-                    inputView.tvError.text = getString(R.string.error_empty_error)
-                    inputView.tvError.visibility = View.VISIBLE
+                    inputView.tvInputError.text = getString(R.string.error_empty_error)
+                    inputView.tvInputError.visibility = View.VISIBLE
                 } else {
                     when {
                         hashtagEntity.name == hashtagName -> context.showToast(getString(R.string.toast_nothing_changed))
                         HashtagsUtils.isNotAHashtag(hashtagName) -> {
-                            inputView.tvError.text = getString(R.string.error_hashtag_invalid)
-                            inputView.tvError.visibility = View.VISIBLE
+                            inputView.tvInputError.text = getString(R.string.error_hashtag_invalid)
+                            inputView.tvInputError.visibility = View.VISIBLE
                         }
                         else -> {
                             runUpdateHashtag(HashtagEntity(hashtagEntity.id, hashtagName))
@@ -216,6 +235,7 @@ class YourHashtagsFragment : BaseFragment() {
                 showEmptyScreen()
             } else {
                 hideEmptyScreen()
+                listFromDatabase = listFromDatabase.sortedBy(HashtagEntity::name)
                 var items = emptyList<HashtagItem>()
                 listFromDatabase.forEach {
                     items = items + HashtagItem(it)

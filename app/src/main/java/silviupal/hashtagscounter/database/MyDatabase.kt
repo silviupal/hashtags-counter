@@ -1,10 +1,8 @@
 package silviupal.hashtagscounter.database
 
-import androidx.room.RoomDatabase
 import androidx.room.Database
 import androidx.room.Room
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.room.RoomDatabase
 import silviupal.hashtagscounter.MyApp
 import silviupal.hashtagscounter.database.dao.DaoHashtagAccess
 import silviupal.hashtagscounter.database.dao.DaoPostAccess
@@ -21,7 +19,7 @@ abstract class MyDatabase : RoomDatabase() {
     abstract fun daoHashtag(): DaoHashtagAccess
 
     companion object {
-        val DATABASE_NAME: String = "hashtags_manager_db"
+        private const val DATABASE_NAME: String = "hashtags_manager_db"
 
         /*
         Example of Migration - https://medium.com/androiddevelopers/understanding-migrations-with-room-f01e04b07929

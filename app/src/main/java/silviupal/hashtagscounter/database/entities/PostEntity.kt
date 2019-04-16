@@ -2,7 +2,6 @@ package silviupal.hashtagscounter.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.Date
 
 /**
  * Created by Silviu Pal on 4/8/2019.

@@ -56,6 +56,7 @@ class EditItemFragment : BasePostActionsFragment() {
             } else {
                 when {
                     nothingChanged() -> context?.showToast(getString(R.string.toast_nothing_changed))
+                    textHasDuplicates -> context?.showToast(getString(R.string.toast_the_text_has_duplicates))
                     shouldShowUpdatePostDialog() -> showUpdatePostDialog()
                     else -> runUpdatePost(titleText, postText)
                 }
@@ -105,8 +106,8 @@ class EditItemFragment : BasePostActionsFragment() {
                 titleInputView.requestFocus()
                 titleInputView.setSelection(it.title.length)
                 etInput.setText(it.text)
-                activity?.let {
-                    KeyboardUtils.showKeyboard(titleInputView, it)
+                activity?.let { context ->
+                    KeyboardUtils.showKeyboard(titleInputView, context)
                 }
             }
         }

@@ -8,9 +8,6 @@ import com.mindorks.editdrawabletext.DrawablePosition
 import com.mindorks.editdrawabletext.onDrawableClickListener
 import kotlinx.android.synthetic.main.fragment_base_post_actions_layout.*
 import kotlinx.android.synthetic.main.merge_hashtags_counter_layout.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import silviupal.hashtagscounter.R
 import silviupal.hashtagscounter.activities.CreateOrEditItemActivity
 import silviupal.hashtagscounter.helpers.SimplifiedTextWatcher
@@ -33,7 +30,7 @@ abstract class BasePostActionsFragment : BaseHashtagsCounterFragment() {
                     if (it.toString().isEmpty()) {
                         titleInputView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                     } else {
-                        titleInputView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_delete, 0);
+                        titleInputView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_delete, 0)
                     }
                 }
                 errorTitleInputView.visibility = View.GONE
@@ -54,7 +51,7 @@ abstract class BasePostActionsFragment : BaseHashtagsCounterFragment() {
             errorTitleInputView.visibility = View.VISIBLE
         }
         if (postText.isEmpty()) {
-            tvError.visibility = View.VISIBLE
+            tvInputError.visibility = View.VISIBLE
         }
     }
 

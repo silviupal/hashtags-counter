@@ -1,7 +1,6 @@
 package silviupal.hashtagscounter.items
 
 import android.view.View
-import android.widget.CompoundButton
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.items.AbstractItem
 import kotlinx.android.synthetic.main.hashtag_checkbox_item_layout.view.*
@@ -23,7 +22,7 @@ class HashtagCheckboxItem(var model: HashtagCheckboxModel) : AbstractItem<Hashta
         override fun bindView(item: HashtagCheckboxItem, payloads: MutableList<Any>) {
             itemView.checkbox.text = item.model.name
             itemView.checkbox.isChecked = item.model.isChecked
-            itemView.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
+            itemView.checkbox.setOnCheckedChangeListener { _, isChecked ->
                 item.model.isChecked = isChecked
             }
         }

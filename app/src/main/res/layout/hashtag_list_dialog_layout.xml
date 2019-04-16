@@ -5,8 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="@dimen/spacing_double"
-    android:layout_marginEnd="@dimen/spacing_double"
     android:orientation="vertical">
 
     <TextView
@@ -14,25 +12,45 @@
         style="@style/Base.DialogWindowTitle.AppCompat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_double"
         android:layout_marginTop="@dimen/spacing_double"
+        android:layout_marginEnd="@dimen/spacing_double"
         android:layout_marginBottom="@dimen/spacing_double"
-        android:textSize="@dimen/titleScreenSize"
-        tools:text="@string/dialog_select_hashtags_title" />
+        android:text="@string/dialog_select_hashtags_title"
+        android:textSize="@dimen/titleScreenSize" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/spacing_default"
+        android:background="@color/material_drawer_divider" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHashtags"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/spacing_double"
+        android:layout_marginEnd="@dimen/spacing_double"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/spacing_default"
+        android:background="@color/material_drawer_divider" />
 
     <TextView
         android:id="@+id/tvHashtagsCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:layout_marginStart="@dimen/spacing_double"
         android:layout_marginTop="@dimen/spacing_default"
+        android:layout_marginEnd="@dimen/spacing_double"
         android:textSize="@dimen/counterTextSize"
         tools:text="#30" />
 
