@@ -5,7 +5,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?android:attr/actionBarSize"
+    android:background="@color/colorPrimary"
     android:elevation="@dimen/toolbarElevation"
-    android:fitsSystemWindows="true"
     app:title="@string/app_name"
     app:titleTextColor="@color/textColorPrimary" />

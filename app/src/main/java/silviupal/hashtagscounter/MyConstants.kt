@@ -10,13 +10,12 @@ object MyConstants {
     const val COPY_TO_CLIPBOARD_TITLE = "Your saved Instagram description"
 
     // Intent extras ids
-    const val EXTRA_STATE = "EXTRA_STATE"
     const val EXTRA_ITEM_ID = "EXTRA_ITEM_ID"
 
     // Fragments args
     const val ARGS_ITEM_ID = "ARGS_ITEM_ID"
 
-    const val MAX_INPUT_LENGTH = 1500
+    const val MAX_INPUT_LENGTH = 2200
 
     // Shared prefs keys
     const val SHARED_PREFS = "mySharedPrefs"

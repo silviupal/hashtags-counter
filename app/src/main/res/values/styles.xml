@@ -22,4 +22,24 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="cardElevation">@dimen/spacing_small</item>
     </style>
+
+    <style name="ClickableTextView">
+        <item name="android:paddingTop">@dimen/spacing_small</item>
+        <item name="android:paddingBottom">@dimen/spacing_small</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/clickable_textview</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="AboutTitle">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/inputTextSize</item>
+    </style>
+
+    <style name="AboutText">
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">@dimen/counterTextSize</item>
+    </style>
 </resources>

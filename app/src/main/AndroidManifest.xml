@@ -4,6 +4,7 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="silviupal.hashtagscounter">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <dist:module dist:instant="true" />
 
     <application
@@ -25,9 +26,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.CreateOrEditItemActivity"
+            android:name=".activities.EditItemActivity"
             android:parentActivityName=".activities.MainActivity"
             android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="ef0746e98e7c9f069472ca3058f52e44af562014" />
     </application>
 
 </manifest>

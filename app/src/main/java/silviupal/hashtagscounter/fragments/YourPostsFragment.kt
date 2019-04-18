@@ -22,7 +22,6 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import silviupal.hashtagscounter.MyEnums
 import silviupal.hashtagscounter.R
 import silviupal.hashtagscounter.activities.MainActivity
 import silviupal.hashtagscounter.base.BaseFragment
@@ -62,19 +61,7 @@ class YourPostsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setEmptyScreen()
-        setFabClickListener()
         configureAdapter()
-
-        rvPosts.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 0) {
-                    fab.hide()
-                } else {
-                    fab.show()
-                }
-            }
-        })
-
         rvPosts.adapter = fastAdapter
         updateAdapter()
     }
@@ -92,8 +79,7 @@ class YourPostsFragment : BaseFragment() {
                 item: PostItem,
                 position: Int): Boolean {
                 listener?.let {
-                    (it as IMainActivityFragmentListener).openCreateEditItemActivity(
-                        MyEnums.CreateOrEditState.EDIT_ITEM, item.itemEntity.id)
+                    (it as IMainActivityFragmentListener).openCreateEditItemActivity(item.itemEntity.id)
                 }
                 return true
             }
@@ -125,15 +111,6 @@ class YourPostsFragment : BaseFragment() {
             DialogInterface.OnClickListener { _, _ ->
                 runDeletePost(itemEntity, position)
             }).show()
-    }
-
-    private fun setFabClickListener() {
-        fab.setOnClickListener {
-            listener?.let {
-                (it as IMainActivityFragmentListener).openCreateEditItemActivity(
-                    MyEnums.CreateOrEditState.CREATE_ITEM, null)
-            }
-        }
     }
 
     private fun updateAdapter() {

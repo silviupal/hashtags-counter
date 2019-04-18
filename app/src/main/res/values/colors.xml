@@ -5,6 +5,8 @@
     <color name="colorPrimary">#ffffff</color>
     <color name="colorSecondary">#8BC34A</color>
     <color name="colorAccent">#8BC34A</color>
+    <color name="colorGradientEnd">@color/colorAccent</color>
+    <color name="colorGradientStart">#4D6D29</color>
 
     <color name="colorPrimaryDark">#BDC0C5</color>
     <color name="textColorPrimary">#555555</color>
@@ -15,4 +17,8 @@
     <color name="material_drawer_background">#F9F9F9</color>
 
     <color name="white">#FFFFFF</color>
+
+    <drawable name="clickable_text_view_selected">@color/material_drawer_selected</drawable>
+    <drawable name="clickable_text_view">@color/colorPrimary</drawable>
+
 </resources>

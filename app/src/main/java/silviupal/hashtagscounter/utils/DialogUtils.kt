@@ -27,14 +27,14 @@ object DialogUtils {
         return AlertDialog.Builder(context)
             .setTitle(title)
             .setMessage(message)
-            .setCancelable(true)
+            .setCancelable(false)
             .setPositiveButton(context.getString(R.string.yes), positiveClick)
             .setNegativeButton(context.getString(R.string.cancel), null)
     }
 
     fun buildNoMessageNoTitleAlertDialog(context: Context): AlertDialog.Builder {
         return AlertDialog.Builder(context)
-            .setCancelable(true)
+            .setCancelable(false)
             .setPositiveButton(context.getString(R.string.yes), null)
             .setNegativeButton(context.getString(R.string.cancel), null)
     }
@@ -43,7 +43,7 @@ object DialogUtils {
         return AlertDialog.Builder(context)
             .setTitle(title)
             .setMessage(message)
-            .setCancelable(true)
+            .setCancelable(false)
             .setPositiveButton(context.getString(R.string.ok), null)
     }
 }

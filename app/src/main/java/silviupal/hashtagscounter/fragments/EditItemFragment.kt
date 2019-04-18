@@ -1,22 +1,29 @@
 package silviupal.hashtagscounter.fragments
 
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
+import android.text.Editable
 import android.view.View
 import android.widget.CompoundButton
-import kotlinx.android.synthetic.main.fragment_base_post_actions_layout.*
+import com.mindorks.editdrawabletext.DrawablePosition
+import com.mindorks.editdrawabletext.onDrawableClickListener
+import kotlinx.android.synthetic.main.fragment_edit_item.*
 import kotlinx.android.synthetic.main.merge_hashtags_counter_layout.*
+import kotlinx.android.synthetic.main.toolbar_layout.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import silviupal.hashtagscounter.MyConstants
 import silviupal.hashtagscounter.R
-import silviupal.hashtagscounter.base.BasePostActionsFragment
+import silviupal.hashtagscounter.activities.EditItemActivity
+import silviupal.hashtagscounter.base.BaseHashtagsCounterFragment
 import silviupal.hashtagscounter.database.MyDatabase
 import silviupal.hashtagscounter.database.entities.PostEntity
 import silviupal.hashtagscounter.events.UpdatePostsListEvent
 import silviupal.hashtagscounter.extensions.showToast
+import silviupal.hashtagscounter.helpers.SimplifiedTextWatcher
 import silviupal.hashtagscounter.utils.DateUtils
 import silviupal.hashtagscounter.utils.DialogUtils
 import silviupal.hashtagscounter.utils.KeyboardUtils
@@ -27,9 +34,11 @@ import silviupal.hashtagscounter.utils.HashtagsUtils
 /**
  * Created by Silviu Pal on 05/04/2019.
  */
-class EditItemFragment : BasePostActionsFragment() {
+class EditItemFragment : BaseHashtagsCounterFragment() {
     private var currentEntity: PostEntity? = null
     private var itemId: Int = -1
+
+    override fun getLayoutId(): Int = R.layout.fragment_edit_item
 
     override fun setupToolbar() {
         listener?.setToolbarTitle(getString(R.string.toolbar_title_hashtags_update_item))
@@ -42,7 +51,48 @@ class EditItemFragment : BasePostActionsFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setActionButton()
+        titleInputView.addTextChangedListener(object : SimplifiedTextWatcher() {
+            override fun afterTextChanged(s: Editable?) {
+                super.afterTextChanged(s)
+                s?.let {
+                    if (it.toString().isEmpty()) {
+                        titleInputView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                    } else {
+                        titleInputView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_delete, 0)
+                    }
+                }
+                errorTitleInputView.visibility = View.GONE
+            }
+        })
+
+        titleInputView.setDrawableClickListener(object : onDrawableClickListener {
+            override fun onClick(target: DrawablePosition) {
+                if (target == DrawablePosition.RIGHT) {
+                    titleInputView.setText("")
+                }
+            }
+        })
         runPopulateLayoutFromDB()
+    }
+
+    private fun showErrors(titleText: String, postText: String) {
+        if (titleText.isEmpty()) {
+            errorTitleInputView.visibility = View.VISIBLE
+        }
+        if (postText.isEmpty()) {
+            tvInputError.visibility = View.VISIBLE
+        }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        this.listener = context as EditItemActivity
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        job.cancel()
     }
 
     override fun setActionButton() {
@@ -50,16 +100,12 @@ class EditItemFragment : BasePostActionsFragment() {
         btnAction.setOnClickListener {
             val titleText: String = titleInputView.text?.toString() ?: ""
             val postText: String = etInput.text?.toString() ?: ""
-
-            if (titleText.isEmpty() || postText.isEmpty()) {
-                showErrors(titleText, postText)
-            } else {
-                when {
-                    nothingChanged() -> context?.showToast(getString(R.string.toast_nothing_changed))
-                    textHasDuplicates -> context?.showToast(getString(R.string.toast_the_text_has_duplicates))
-                    shouldShowUpdatePostDialog() -> showUpdatePostDialog()
-                    else -> runUpdatePost(titleText, postText)
-                }
+            when {
+                titleText.isEmpty() || postText.isEmpty() -> showErrors(titleText, postText)
+                nothingChanged() -> context?.showToast(getString(R.string.toast_nothing_changed))
+                textHasDuplicates -> context?.showToast(getString(R.string.toast_the_text_has_duplicates))
+                shouldShowUpdatePostDialog() -> showUpdatePostDialog()
+                else -> runUpdatePost(titleText, postText)
             }
         }
     }
@@ -107,7 +153,7 @@ class EditItemFragment : BasePostActionsFragment() {
                 titleInputView.setSelection(it.title.length)
                 etInput.setText(it.text)
                 activity?.let { context ->
-                    KeyboardUtils.showKeyboard(titleInputView, context)
+                    KeyboardUtils.showKeyboard(etInput, context)
                 }
             }
         }

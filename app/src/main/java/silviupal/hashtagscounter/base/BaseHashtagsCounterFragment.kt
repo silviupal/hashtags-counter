@@ -2,6 +2,7 @@ package silviupal.hashtagscounter.base
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.view.LayoutInflater
@@ -38,8 +39,9 @@ import android.text.Spannable
 import android.text.style.ForegroundColorSpan
 import android.text.SpannableString
 import android.graphics.Color
-import kotlinx.android.synthetic.main.fragment_base_post_actions_layout.*
+import kotlinx.android.synthetic.main.fragment_edit_item.*
 import kotlinx.android.synthetic.main.hashtag_list_dialog_layout.view.*
+import silviupal.hashtagscounter.utils.KeyboardUtils
 
 /**
  * Created by Silviu Pal on 4/9/2019.
@@ -52,49 +54,64 @@ abstract class BaseHashtagsCounterFragment : BaseFragment() {
 
     private var textChangedListener: SimplifiedTextWatcher? = null
 
+    abstract fun setActionButton()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupActionsOnTools()
         setupInputView()
+        setupActionsOnTools()
     }
 
     private fun setupActionsOnTools() {
-        tvCopyView.setOnClickListener {
+        tvCopyView.setOnClickListener { view ->
             if (!getInputText().isEmpty()) {
-                context?.apply {
+                view.context.apply {
                     copyToClipboard(getInputText())
                     showToast(getString(R.string.toast_copy_text))
                 }
+            } else {
+                view.context.showToast(getString(R.string.toast_nothing_to_copy))
             }
         }
 
-        tvPasteView.setOnClickListener {
-            context?.let { contextObject ->
-                if (getInputText().length == MyConstants.MAX_INPUT_LENGTH) {
-                    contextObject.showToast(getString(R.string.toast_input_view_limit_achieved))
-                } else {
-                    val textToPaste = contextObject.pasteFromClipboard()
-                    textToPaste?.let { pasteThisText ->
-                        val textAfterPaste = getInputText() + pasteThisText
-                        etInput.setText(textAfterPaste)
-                        etInput.requestFocus()
-                        etInput.setSelection(etInput.length())
-                    } ?: contextObject.showToast(getString(R.string.toast_nothing_to_paste))
-                }
+        tvPasteView.setOnClickListener { view ->
+            if (getInputText().length == MyConstants.MAX_INPUT_LENGTH) {
+                view.context.showToast(getString(R.string.toast_input_view_limit_achieved))
+            } else {
+                val textToPaste = view.context.pasteFromClipboard()
+                textToPaste?.let { pasteThisText ->
+                    val textAfterPaste = getInputText() + pasteThisText
+                    etInput.setText(textAfterPaste)
+                    etInput.requestFocus()
+                    etInput.setSelection(etInput.length())
+                } ?: view.context.showToast(getString(R.string.toast_nothing_to_paste))
             }
         }
 
-        tvClearView.setOnClickListener {
+        tvClearView.setOnClickListener { view ->
             if (!getInputText().isEmpty()) {
-                etInput.setText("")
+                showClearDialog(view.context)
+            } else {
+                view.context.showToast(getString(R.string.toast_nothing_to_clear))
             }
         }
 
-        tvInsertHashtag.setOnClickListener {
-            view?.let {
-                showHashtagsDialog(it.context)
+        tvInsertHashtag.setOnClickListener { view ->
+            if (getInputText().length == MyConstants.MAX_INPUT_LENGTH) {
+                view.context.showToast(getString(R.string.toast_input_view_limit_achieved))
+            } else {
+                showHashtagsDialog(view.context)
             }
         }
+    }
+
+    private fun showClearDialog(context: Context) {
+        DialogUtils.buildNormalAlertDialog(context,
+            getString(R.string.dialog_warning_title),
+            getString(R.string.dialog_clear_text_message),
+            DialogInterface.OnClickListener { _, _ ->
+                etInput.setText("")
+            }).show()
     }
 
     private fun setupInputView() {
@@ -103,23 +120,28 @@ abstract class BaseHashtagsCounterFragment : BaseFragment() {
                 private var lastUpdatedText = ""
                 override fun afterTextChanged(s: Editable?) {
                     s?.let { text ->
-                        btnAction.isEnabled = false
                         tvInputError.visibility = View.GONE
                         setupCounterView(HashtagsUtils.getNumberOfHashtagsFromText(text.toString()))
                         setupCounterCharsView()
 
                         val currentText = text.toString()
-                        if (currentText == lastUpdatedText)
+                        if (currentText == lastUpdatedText) {
+                            btnAction.isEnabled = true
                             return
+                        }
 
                         lastUpdatedText = currentText
 
                         uiScope.launch {
-                            delay(2000)
+                            btnAction.isEnabled = false
+                            delay(1500)
                             if (currentText != lastUpdatedText) {
+                                btnAction.isEnabled = true
                                 return@launch
                             }
-                            underlineDuplicates(text.toString())
+                            context?.let {
+                                underlineDuplicates(text.toString())
+                            }
                         }
                     }
                 }
@@ -187,7 +209,7 @@ abstract class BaseHashtagsCounterFragment : BaseFragment() {
                 textHasDuplicates = false
             }
         }
-        btnAction.isEnabled = true
+        btnAction?.isEnabled = true
     }
 
     private fun setupCounterView(hashtagsCount: Int) {
@@ -235,6 +257,7 @@ abstract class BaseHashtagsCounterFragment : BaseFragment() {
 
                 dialog.setOnShowListener { dialogObject ->
                     val yesButton = (dialogObject as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
+                    val noButton = (dialogObject as AlertDialog).getButton(AlertDialog.BUTTON_NEGATIVE)
                     yesButton.setOnClickListener {
                         var selectedHashtags: List<String> = emptyList()
                         fastAdapter.adapterItems.forEach {
@@ -246,8 +269,8 @@ abstract class BaseHashtagsCounterFragment : BaseFragment() {
                             var inputText = etInput.text.toString()
                             if (inputText.isEmpty()) {
                                 inputText += selectedHashtags[0]
-                                for (i in 1..selectedHashtags.size) {
-                                    inputText = "$inputText $selectedHashtags[i]"
+                                for (i in 1..(selectedHashtags.size - 1)) {
+                                    inputText += " " + selectedHashtags[i]
                                 }
                             } else {
                                 selectedHashtags.forEach {
@@ -256,10 +279,20 @@ abstract class BaseHashtagsCounterFragment : BaseFragment() {
                             }
                             etInput.setText(inputText)
                             etInput.requestFocus()
-                            etInput.setSelection(inputText.length)
+                            if (inputText.length > MyConstants.MAX_INPUT_LENGTH) {
+                                etInput.setSelection(MyConstants.MAX_INPUT_LENGTH)
+                            } else {
+                                etInput.setSelection(inputText.length)
+                            }
                             dialogObject.dismiss()
                         } else {
                             context.showToast(getString(R.string.toast_nothing_to_insert))
+                        }
+                    }
+                    noButton.setOnClickListener { view ->
+                        activity?.let {
+                            KeyboardUtils.hideKeyboard(view, it)
+                            dialogObject.dismiss()
                         }
                     }
                 }

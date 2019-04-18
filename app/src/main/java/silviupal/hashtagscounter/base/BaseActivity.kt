@@ -21,6 +21,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun switchFragment(fragment: BaseFragment) {
         supportFragmentManager.beginTransaction()
+            .setCustomAnimations(0, 0)
             .replace(R.id.container, fragment)
             .commit()
     }

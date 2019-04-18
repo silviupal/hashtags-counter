@@ -3,9 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/checkbox"
-    android:textSize="@dimen/hashtagCheckboxTextSize"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="start"
     android:gravity="center_vertical"
+    android:textSize="@dimen/hashtagCheckboxTextSize"
     tools:text="Don't show this again." />
