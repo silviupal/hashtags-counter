@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -126,4 +127,15 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
-</FrameLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAction"
+        style="@style/AppButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cardWrapper"
+        android:layout_marginStart="@dimen/spacing_default"
+        android:layout_marginEnd="@dimen/spacing_default"
+        android:layout_marginBottom="@dimen/spacing_default"
+        tools:text="Update post" />
+</RelativeLayout>

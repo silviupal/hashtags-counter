@@ -45,6 +45,7 @@
     <string name="dialog_title_no_hashtags">No hashtags</string>
     <string name="dialog_message_no_hashtags">You have no hashtags in your personal list. Go and add some.</string>
     <string name="dialog_save_post_title">Save post</string>
+    <string name="dialog_clear_text_message">Are you sure you want to remove all the text?</string>
 
     <!-- Toast messages -->
     <string name="toast_copy_text">Text copied to clipboard</string>
@@ -65,7 +66,6 @@
     <string name="error_hashtag_invalid">* Invalid. A hashtag should start with a letter, a digit or _</string>
     <string name="error_hashtag_already_created">* Hashtag already created</string>
 
-
     <!-- Empty fields -->
     <string name="empty_screen_no_posts_title">No saved posts</string>
     <string name="empty_screen_no_posts_message">Here you will find your saved posts.\nCreate new post in \"Write a post\" section.</string>
@@ -76,7 +76,6 @@
     <string name="default_counter_hashtags_text">0 hashtags</string>
     <string name="default_counter_input_text">0 characters</string>
     <string name="app_description">Worry less. Create more.</string>
-    <string name="dialog_clear_text_message">Are you sure you want to remove all the text?</string>
 
     <!-- About section -->
     <string name="about_title_1">Why I created this app?</string>

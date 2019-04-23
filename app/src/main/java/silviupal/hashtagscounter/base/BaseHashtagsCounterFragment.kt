@@ -3,14 +3,25 @@ package silviupal.hashtagscounter.base
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
+import androidx.annotation.Nullable
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
+import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter
+import com.mikepenz.fastadapter.listeners.ClickEventHook
+import kotlinx.android.synthetic.main.hashtag_checkbox_item_layout.view.*
+import kotlinx.android.synthetic.main.hashtag_list_dialog_layout.view.*
 import kotlinx.android.synthetic.main.merge_hashtags_counter_layout.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,16 +43,9 @@ import silviupal.hashtagscounter.models.HashtagCheckboxModel
 import silviupal.hashtagscounter.utils.ColorUtils
 import silviupal.hashtagscounter.utils.DialogUtils
 import silviupal.hashtagscounter.utils.HashtagsUtils
+import silviupal.hashtagscounter.utils.KeyboardUtils
 import timber.log.Timber
 import java.util.regex.Pattern
-import android.widget.TextView
-import android.text.Spannable
-import android.text.style.ForegroundColorSpan
-import android.text.SpannableString
-import android.graphics.Color
-import kotlinx.android.synthetic.main.fragment_edit_item.*
-import kotlinx.android.synthetic.main.hashtag_list_dialog_layout.view.*
-import silviupal.hashtagscounter.utils.KeyboardUtils
 
 /**
  * Created by Silviu Pal on 4/9/2019.
@@ -126,7 +130,7 @@ abstract class BaseHashtagsCounterFragment : BaseFragment() {
 
                         val currentText = text.toString()
                         if (currentText == lastUpdatedText) {
-                            btnAction.isEnabled = true
+                            btnAction?.isEnabled = true
                             return
                         }
 
@@ -136,7 +140,7 @@ abstract class BaseHashtagsCounterFragment : BaseFragment() {
                             btnAction.isEnabled = false
                             delay(1500)
                             if (currentText != lastUpdatedText) {
-                                btnAction.isEnabled = true
+                                btnAction?.isEnabled = true
                                 return@launch
                             }
                             context?.let {
@@ -250,6 +254,31 @@ abstract class BaseHashtagsCounterFragment : BaseFragment() {
                 fastAdapter.setNewList(items)
                 customView.rvHashtags.adapter = fastAdapter
 
+                fastAdapter.withEventHook(object : ClickEventHook<HashtagCheckboxItem>() {
+
+                    @Nullable
+                    override fun onBind(viewHolder: RecyclerView.ViewHolder): View? {
+                        //return the views on which you want to bind this event
+                        return if (viewHolder is HashtagCheckboxItem.ViewHolder) {
+                            viewHolder.itemView.checkbox
+                        } else null
+                    }
+
+                    override fun onClick(v: View,
+                        position: Int,
+                        adapter: FastAdapter<HashtagCheckboxItem>,
+                        item: HashtagCheckboxItem) {
+                        var count = 0
+                        fastAdapter.adapterItems.forEach {
+                            if (it.model.isChecked) {
+                                count++
+                            }
+                        }
+                        customView.tvHashtagsCount.text = String.format(context.getString(R.string.hashtag_sign_format),
+                            count)
+                    }
+                })
+
                 dialog = DialogUtils.buildNoMessageNoTitleAlertDialog(context)
                     .setPositiveButton(getString(R.string.insert), null)
                     .setView(customView)
@@ -257,7 +286,7 @@ abstract class BaseHashtagsCounterFragment : BaseFragment() {
 
                 dialog.setOnShowListener { dialogObject ->
                     val yesButton = (dialogObject as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
-                    val noButton = (dialogObject as AlertDialog).getButton(AlertDialog.BUTTON_NEGATIVE)
+                    val noButton = dialogObject.getButton(AlertDialog.BUTTON_NEGATIVE)
                     yesButton.setOnClickListener {
                         var selectedHashtags: List<String> = emptyList()
                         fastAdapter.adapterItems.forEach {

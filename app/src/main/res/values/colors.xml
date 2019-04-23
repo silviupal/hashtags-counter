@@ -5,8 +5,6 @@
     <color name="colorPrimary">#ffffff</color>
     <color name="colorSecondary">#8BC34A</color>
     <color name="colorAccent">#8BC34A</color>
-    <color name="colorGradientEnd">@color/colorAccent</color>
-    <color name="colorGradientStart">#4D6D29</color>
 
     <color name="colorPrimaryDark">#BDC0C5</color>
     <color name="textColorPrimary">#555555</color>

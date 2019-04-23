@@ -71,16 +71,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/postTitle" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAction"
-            style="@style/AppButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/hashtagsCounterLayout"
-            android:layout_marginStart="@dimen/spacing_default"
-            android:layout_marginEnd="@dimen/spacing_default"
-            android:layout_marginBottom="@dimen/spacing_default"
-            tools:text="Update post" />
     </RelativeLayout>
 </ScrollView>

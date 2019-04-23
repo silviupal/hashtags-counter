@@ -132,7 +132,7 @@ class YourHashtagsFragment : BaseFragment() {
 
         dialog.setOnShowListener { dialogObject ->
             val yesButton = (dialogObject as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
-            val noButton = (dialogObject as AlertDialog).getButton(AlertDialog.BUTTON_NEGATIVE)
+            val noButton = dialogObject.getButton(AlertDialog.BUTTON_NEGATIVE)
             yesButton.setOnClickListener { onClick ->
                 val hashtagName = customView.inputEditText.text.toString()
                 when {
@@ -197,7 +197,7 @@ class YourHashtagsFragment : BaseFragment() {
 
         dialog.setOnShowListener { dialogObject ->
             val yesButton = (dialogObject as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
-            val noButton = (dialogObject as AlertDialog).getButton(AlertDialog.BUTTON_NEGATIVE)
+            val noButton = dialogObject.getButton(AlertDialog.BUTTON_NEGATIVE)
             yesButton.setOnClickListener { onClick ->
                 val hashtagName = inputView.inputEditText.text.toString()
                 when {

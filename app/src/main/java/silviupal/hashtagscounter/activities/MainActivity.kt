@@ -3,14 +3,11 @@ package silviupal.hashtagscounter.activities
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
 import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import kotlinx.android.synthetic.main.toolbar_layout.*
-import silviupal.hashtagscounter.MyApp
 import silviupal.hashtagscounter.MyConstants
 import silviupal.hashtagscounter.R
 import silviupal.hashtagscounter.base.BaseActivity
@@ -23,6 +20,10 @@ import silviupal.hashtagscounter.utils.KeyboardUtils
 
 class MainActivity : BaseActivity(), IMainActivityFragmentListener {
     private var selectedDrawerItem: Long = 0L
+    private val writeAPostFragment = WriteAPostFragment()
+    private val aboutFragment = AboutFragment()
+
+
     override fun getLayoutId(): Int = R.layout.activity_main
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +31,7 @@ class MainActivity : BaseActivity(), IMainActivityFragmentListener {
         setSupportActionBar(toolbar)
 
         selectedDrawerItem = 1L
-        switchFragment(WriteAPostFragment())
+        switchFragment(writeAPostFragment)
         setDrawer()
     }
 
@@ -73,7 +74,7 @@ class MainActivity : BaseActivity(), IMainActivityFragmentListener {
                 1L -> {
                     if (selectedDrawerItem != 1L) {
                         selectedDrawerItem = 1L
-                        switchFragment(WriteAPostFragment())
+                        switchFragment(writeAPostFragment)
                     }
                 }
                 2L -> {
@@ -91,13 +92,13 @@ class MainActivity : BaseActivity(), IMainActivityFragmentListener {
                 4L -> {
                     if (selectedDrawerItem != 4L) {
                         selectedDrawerItem = 4L
-                        switchFragment(AboutFragment())
+                        switchFragment(aboutFragment)
                     }
                 }
                 5L -> {
-                    val intent = Intent(android.content.Intent.ACTION_VIEW);
+                    val intent = Intent(android.content.Intent.ACTION_VIEW)
                     intent.data = Uri.parse("https://play.google.com/store/apps/details?id=silviupal.hashtagscounter")
-                    startActivity(intent);
+                    startActivity(intent)
                 }
             }
             true

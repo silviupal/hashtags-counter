@@ -10,7 +10,6 @@ import com.mindorks.editdrawabletext.DrawablePosition
 import com.mindorks.editdrawabletext.onDrawableClickListener
 import kotlinx.android.synthetic.main.fragment_edit_item.*
 import kotlinx.android.synthetic.main.merge_hashtags_counter_layout.*
-import kotlinx.android.synthetic.main.toolbar_layout.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -26,10 +25,10 @@ import silviupal.hashtagscounter.extensions.showToast
 import silviupal.hashtagscounter.helpers.SimplifiedTextWatcher
 import silviupal.hashtagscounter.utils.DateUtils
 import silviupal.hashtagscounter.utils.DialogUtils
+import silviupal.hashtagscounter.utils.HashtagsUtils
 import silviupal.hashtagscounter.utils.KeyboardUtils
 import silviupal.hashtagscounter.utils.MyViewsUtils
 import silviupal.hashtagscounter.utils.SharedPrefsUtils
-import silviupal.hashtagscounter.utils.HashtagsUtils
 
 /**
  * Created by Silviu Pal on 05/04/2019.
@@ -149,11 +148,12 @@ class EditItemFragment : BaseHashtagsCounterFragment() {
             entity?.let {
                 currentEntity = it
                 titleInputView.setText(it.title)
+                etInput.setText(it.text)
+
                 titleInputView.requestFocus()
                 titleInputView.setSelection(it.title.length)
-                etInput.setText(it.text)
                 activity?.let { context ->
-                    KeyboardUtils.showKeyboard(etInput, context)
+                    KeyboardUtils.showKeyboard(titleInputView, context)
                 }
             }
         }

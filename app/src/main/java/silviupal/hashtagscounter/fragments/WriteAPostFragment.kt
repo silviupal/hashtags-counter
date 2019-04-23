@@ -7,7 +7,6 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import kotlinx.android.synthetic.main.fragment_edit_item.*
 import kotlinx.android.synthetic.main.hashtag_dialog_layout.view.*
 import kotlinx.android.synthetic.main.merge_hashtags_counter_layout.*
 import kotlinx.coroutines.Dispatchers
@@ -74,7 +73,7 @@ open class WriteAPostFragment : BaseHashtagsCounterFragment() {
 
         dialog.setOnShowListener { dialogObject ->
             val yesButton = (dialogObject as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
-            val noButton = (dialogObject as AlertDialog).getButton(AlertDialog.BUTTON_NEGATIVE)
+            val noButton = dialogObject.getButton(AlertDialog.BUTTON_NEGATIVE)
             yesButton.setOnClickListener { onClick ->
                 val postTitle = customView.inputEditText.text.toString()
                 when {
