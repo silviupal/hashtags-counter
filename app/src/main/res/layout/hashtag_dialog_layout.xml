@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvDialogTitleView"
+        style="@style/Base.DialogWindowTitle.AppCompat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_double"
+        android:textSize="@dimen/titleScreenSize"
+        tools:text="@string/dialog_edit_hashtag_title" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_double"
+        android:layout_marginEnd="@dimen/spacing_double"
+        android:paddingBottom="@dimen/spacing_small"
+        app:counterEnabled="true"
+        app:counterMaxLength="35"
+        tools:hint="@string/hint_hashtag_input">
+
+        <com.mindorks.editdrawabletext.EditDrawableText
+            android:id="@+id/inputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="sans-serif"
+            android:gravity="start"
+            android:maxLength="35"
+            android:maxLines="1"
+            android:paddingStart="0dp"
+            android:paddingTop="@dimen/spacing_default"
+            android:paddingEnd="0dp"
+            android:textSize="@dimen/inputTextSize"
+            tools:ignore="Autofill,LabelFor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvInputError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_double"
+        android:layout_marginEnd="@dimen/spacing_double"
+        android:fontFamily="sans-serif-condensed"
+        android:paddingTop="@dimen/spacing_small"
+        android:paddingBottom="@dimen/spacing_small"
+        android:text="@string/error_empty_error"
+        android:textColor="@color/colorError"
+        android:visibility="gone" />
+</LinearLayout>

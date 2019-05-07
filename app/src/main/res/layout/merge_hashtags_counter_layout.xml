@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardWrapper"
+        style="@style/AppMaterialCardView"
+        android:layout_margin="@dimen/spacing_default">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/spacing_default">
+
+            <TextView
+                android:id="@+id/tvCopyView"
+                style="@style/ClickableTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/btn_copy"
+                app:layout_constraintEnd_toStartOf="@+id/tvPasteView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvPasteView"
+                style="@style/ClickableTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/btn_paste"
+                app:layout_constraintEnd_toStartOf="@+id/tvClearView"
+                app:layout_constraintStart_toEndOf="@+id/tvCopyView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvClearView"
+                style="@style/ClickableTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/btn_clear"
+                app:layout_constraintEnd_toEndOf="@+id/tvInsertHashtag"
+                app:layout_constraintStart_toEndOf="@+id/tvPasteView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvInsertHashtag"
+                style="@style/ClickableTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/btn_insert_hashtag"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvClearView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/spacing_default"
+                android:background="@color/material_drawer_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCopyView" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_default"
+                android:background="@android:color/transparent"
+                android:fontFamily="sans-serif-light"
+                android:gravity="top"
+                android:hint="@string/input_hint"
+                android:maxLength="2200"
+                android:minLines="10"
+                android:textSize="@dimen/inputTextSize"
+                app:layout_constraintBottom_toTopOf="@+id/tvInputError"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+            <TextView
+                android:id="@+id/tvInputError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_default"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/error_empty_error"
+                android:textColor="@color/colorError"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/divider2"
+                app:layout_constraintTop_toBottomOf="@+id/etInput" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/spacing_default"
+                android:background="@color/material_drawer_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvInputError" />
+
+            <TextView
+                android:id="@+id/tvInputLength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/default_counter_input_text"
+                android:textSize="@dimen/counterCharsTextSize"
+                app:layout_constraintBottom_toBottomOf="@+id/tvHashtagsCounter"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tvHashtagsCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_default"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/default_counter_hashtags_text"
+                android:textSize="@dimen/counterTextSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAction"
+        style="@style/AppButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cardWrapper"
+        android:layout_marginStart="@dimen/spacing_default"
+        android:layout_marginEnd="@dimen/spacing_default"
+        android:layout_marginBottom="@dimen/spacing_default"
+        tools:text="Update post" />
+</RelativeLayout>

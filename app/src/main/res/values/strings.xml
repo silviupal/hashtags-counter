@@ -1,7 +1,107 @@
 <resources>
-    <string name="app_name">Hashtags Counter</string>
+    <string name="app_name">Hashtags Manager</string>
+
+    <!-- Toolbar titles -->
+    <string name="toolbar_title_about">About</string>
+    <string name="toolbar_title_write_a_post_fragment">Write a post</string>
+    <string name="toolbar_title_your_posts">Your saved posts</string>
+    <string name="toolbar_title_your_hashtags">Your saved hashtags</string>
+    <string name="toolbar_title_rate_the_app">Rate this app</string>
+    <string name="toolbar_title_hashtags_update_item">Edit post</string>
+
+    <!-- Hints -->
+    <string name="hint_title_input">Post title</string>
     <string name="input_hint">Insert text here</string>
+    <string name="hint_hashtag_input">Insert your hashtag starting with \'#\'</string>
+    <string name="hint_dialog_post_title">Insert post title</string>
+
+    <!-- Formats -->
+    <string name="hashtag_sign_format">#%d</string>
+    <string name="hashtags_counter_format">%d %s</string>
+
+    <!-- Buttons labels-->
+    <string name="btn_save_post">Save post</string>
+    <string name="btn_update_post">Update post</string>
+    <string name="btn_copy">Copy</string>
+    <string name="btn_paste">Paste</string>
+    <string name="btn_clear">Clear</string>
+    <string name="btn_insert_hashtag">Insert #</string>
+
+    <!-- Dialog texts -->
+    <string name="ok">OK</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="update">Update</string>
+    <string name="save">Save</string>
+    <string name="insert">Insert</string>
+    <string name="create">Create</string>
+    <string name="dialog_warning_title">Think twice</string>
+    <string name="dialog_edit_post_message">Are you sure you want to update this post? Your previous post will be overwritten.</string>
+    <string name="dialog_delete_post_message">Are you sure you want to delete this post?</string>
+    <string name="dialog_create_hashtag_title">Create new Hashtag</string>
+    <string name="dialog_delete_hashtag_message">Are you sure you want to delete this hashtag?</string>
+    <string name="dialog_edit_hashtag_title">Edit hashtag</string>
+    <string name="dialog_select_hashtags_title">Select hashtags</string>
+    <string name="dialog_title_no_hashtags">No hashtags</string>
+    <string name="dialog_message_no_hashtags">You have no hashtags in your personal list. Go and add some.</string>
+    <string name="dialog_save_post_title">Save post</string>
+    <string name="dialog_clear_text_message">Are you sure you want to remove all the text?</string>
+
+    <!-- Toast messages -->
+    <string name="toast_copy_text">Text copied to clipboard</string>
+    <string name="toast_nothing_to_paste">Nothing to paste</string>
+    <string name="toast_input_view_limit_achieved">Input text is limited to 2200</string>
+    <string name="toast_update_post_successfully">Post successfully updated!</string>
+    <string name="toast_create_post_successfully">Post successfully created!</string>
+    <string name="toast_create_hashtag_successfully">Hashtag successfully created!</string>
+    <string name="toast_nothing_changed">Nothing changed. No need to update.</string>
+    <string name="toast_update_hashtag_successfully">Hashtag successfully updated!</string>
+    <string name="toast_the_text_has_duplicates">Remove duplicates</string>
+    <string name="toast_nothing_to_insert">Nothing to insert</string>
+    <string name="toast_nothing_to_clear">Nothing to clear</string>
+    <string name="toast_nothing_to_copy">Nothing to copy</string>
+
+    <!-- Errors -->
+    <string name="error_empty_error">* This field should not be empty</string>
+    <string name="error_hashtag_invalid">* Invalid. A hashtag should start with a letter, a digit or _</string>
+    <string name="error_hashtag_already_created">* Hashtag already created</string>
+
+    <!-- Empty fields -->
+    <string name="empty_screen_no_posts_title">No saved posts</string>
+    <string name="empty_screen_no_posts_message">Here you will find your saved posts.\nCreate new post in \"Write a post\" section.</string>
+    <string name="empty_screen_no_hashtags_title">No saved hashtags</string>
+    <string name="empty_screen_no_hashtags_message">Here you can save your favorite hashtags to quickly insert them into your posts.\nCreate new hashtag by clicking the round green button.</string>
+
+    <string name="checkbox_dont_show_this_again">Don\'t show this again</string>
     <string name="default_counter_hashtags_text">0 hashtags</string>
     <string name="default_counter_input_text">0 characters</string>
-    <string name="hashtags_counter_format">%d %s</string>
+    <string name="app_description">Worry less. Create more.</string>
+
+    <!-- About section -->
+    <string name="about_title_1">Why I created this app?</string>
+    <string name="about_text_1">One day, I wrote 31 hashtags in the description of a post on Instagram.
+        When I hit Publish, the whole description was gone (this is the behaviour of Instagram right now #April2019).
+        Oh, crap! The description was so beautiful and now is gone.
+        \nAfter this sad moment, I had an idea: I should create an app to count the hashtags from a text. This was version 1.0 and it was called Hashtags Counter.</string>
+    <string name="about_title_2">Hashtags Counter becomes a Manager</string>
+    <string name="about_text_2">After receiving feedback from a couple of friends, I decided to upgrade the app and add some features. Now looks like a Manager.
+        \nUsing this app, you can compose your posts in the <b>\"Write a post\"</b> section.
+        \nThere you will find some useful tools to <b>Copy, Paste</b> or <b>Clear</b> the text from the input.
+    </string>
+    <string name="about_title_3">Save for later</string>
+    <string name="about_text_3">After you \"Write a post\", you can <b>Save</b> the post in your local database and every time you need a similar description,
+        you can find it in \"Your saved posts\" section.
+        \nYou can also edit the saved post or create a hashtags lists to have them ready when needed.
+        \nThe possibilities are unlimited.</string>
+    <string name="about_title_4">Populate the hashtags list</string>
+    <string name="about_text_4">Go to \"Your saved hashtags\" and populate the list with all your favorite hashtags.
+        \nThen go to \"Write a post\" and use the option \"Insert \#\" to insert into your post your hashtags.</string>
+    <string name="about_title_5">Feedback is always welcome</string>
+    <string name="about_text_5">I hope this app will be useful for you. Any feedback can be sent to franciscsilviu2\@gmail.com. Thank you!</string>
+    <string name="about_title_6">Feature in development for v2.1</string>
+    <string name="about_text_6">Import/Export data - because the app is using a local database created by you, if one day you decide to have the same data on
+        different devices, you should be able to Export data from one phone in a file, then import the file on the other device.
+        \nOther things will follow after your feedback.</string>
+    <string name="about_text_7">My name is Silviu Pal and you can find me everywhere. Just Google my name.\n\nCheers!</string>
+
 </resources>

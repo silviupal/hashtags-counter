@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="post_item_id" type="id" />
+    <item name="hashtag_item_id" type="id" />
+    <item name="hashtag_checkbox_item_id" type="id" />
+</resources>
