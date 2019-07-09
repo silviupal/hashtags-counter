@@ -8,3 +8,7 @@
 .externalNativeBuild
 keystore.jks
 private_key.pepk
+/buildSrc/.gradle
+/buildSrc/build
+/buildSrc/*.iml
+
