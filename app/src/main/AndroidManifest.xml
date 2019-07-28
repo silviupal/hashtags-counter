@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.MainActivity"
+            android:name="silviupal.hashtagscounter.presentation.activities.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,8 +25,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.EditItemActivity"
-            android:parentActivityName=".activities.MainActivity"
+            android:name="silviupal.hashtagscounter.presentation.activities.EditItemActivity"
+            android:parentActivityName="silviupal.hashtagscounter.presentation.activities.MainActivity"
             android:screenOrientation="portrait" />
 
         <!--<meta-data

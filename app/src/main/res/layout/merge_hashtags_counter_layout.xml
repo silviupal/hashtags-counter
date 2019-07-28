@@ -75,6 +75,7 @@
                 android:fontFamily="sans-serif-light"
                 android:gravity="top"
                 android:hint="@string/input_hint"
+                android:inputType="textCapSentences|textMultiLine"
                 android:maxLength="2200"
                 android:minLines="10"
                 android:textSize="@dimen/inputTextSize"

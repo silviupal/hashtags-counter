@@ -7,6 +7,10 @@ object Releases {
     val versionName = "2.0"
 }
 
+object Modules {
+    val app = ":app"
+}
+
 object Versions {
     val gradle = "3.4.1"
     val kotlin = "1.3.41"
